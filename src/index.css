@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reds Water-heaters Design System
+   Navy Blue (#0A1F3D), Red (#C41E3A), White, Light Gray (#F8F9FA)
+   All colors in HSL format
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 216 68% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 216 68% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 68% 14%;
+
+    --primary: 351 73% 44%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 17% 98%;
+    --secondary-foreground: 216 68% 14%;
+
+    --muted: 210 17% 98%;
+    --muted-foreground: 215 14% 45%;
+
+    --accent: 216 68% 14%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 351 73% 44%;
+
+    --radius: 0.5rem;
+
+    /* Custom brand colors */
+    --navy: 216 68% 14%;
+    --navy-light: 216 50% 25%;
+    --brand-red: 351 73% 44%;
+    --brand-red-dark: 351 73% 36%;
+    --light-gray: 210 17% 98%;
+  }
+
+  .dark {
+    --background: 216 68% 14%;
+    --foreground: 0 0% 100%;
+
+    --card: 216 68% 14%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 216 68% 14%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 351 73% 44%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 216 50% 25%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 216 50% 25%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 351 73% 44%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 216 50% 25%;
+    --input: 216 50% 25%;
+    --ring: 351 73% 44%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* GPU-accelerated transforms for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Scroll animation utility - optimized for 60fps */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  will-change: opacity, transform;
+}
+
+.animate-fade-up-delay-1 {
+  animation: fade-up 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s forwards;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+/* Optimized section transitions */
+.section-animate {
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+
+/* Card hover - GPU accelerated */
+.card-hover {
+  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, box-shadow;
+}
+
+.card-hover:hover {
+  transform: translate3d(0, -4px, 0);
+}
+
+/* Grayscale image filter */
+.grayscale-image {
+  filter: grayscale(100%);
+  transition: filter 0.25s ease;
+}
+
+.grayscale-image:hover {
+  filter: grayscale(80%);
+}
+
+/* Touch-friendly tap targets */
+@media (max-width: 768px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
