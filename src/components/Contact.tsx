@@ -102,6 +102,19 @@ export function Contact() {
       return;
     }
 
+    // Fire-and-forget: sync to Google Sheets (non-blocking)
+    fetch("https://script.google.com/macros/s/AKfycbwSErcQYYHsbdLCwlMfGbu0iVAnPf3F-YDUAXj659lpyRfkxRgaTyzHPeGJzR-GpmZ0rg/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        full_name: fullName,
+        phone_number: phoneNumber,
+        email_address: emailAddress,
+        service_needed: service,
+        message: message || null,
+      }),
+    }).catch(() => {});
+
     toast({
       title: "Message sent!",
       description: "We've received your request and will get back to you shortly.",
