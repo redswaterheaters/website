@@ -187,7 +187,7 @@ export function Contact() {
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="(XXX) XXX-XXXX"
+                    placeholder="555-555-5555"
                     required
                     className="mt-1.5 border-border focus:border-primary"
                   />
