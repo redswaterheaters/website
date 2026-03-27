@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase";
 
 const contactInfo = [
   {
@@ -40,7 +41,10 @@ const contactInfo = [
 
 export function Contact() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [service, setService] = useState("");
   const sectionRef = useRef<HTMLElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -60,12 +64,51 @@ export function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast({
-      title: "Form submitted!",
-      description: "This is a demo - no message was actually sent.",
+    const form = e.currentTarget;
+    const fullName = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+    const phoneNumber = (form.elements.namedItem("phone") as HTMLInputElement).value.trim();
+    const emailAddress = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
+
+    if (!fullName || !phoneNumber || !emailAddress || !service) {
+      toast({
+        title: "Missing required fields",
+        description: "Please fill in your name, phone number, email, and select a service.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const { error } = await supabase.from("contact_submissions").insert({
+      full_name: fullName,
+      phone_number: phoneNumber,
+      email_address: emailAddress,
+      service_needed: service,
+      message: message || null,
     });
+
+    setIsSubmitting(false);
+
+    if (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Your message could not be sent. Please try again or call us directly.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    toast({
+      title: "Message sent!",
+      description: "We've received your request and will get back to you shortly.",
+    });
+
+    formRef.current?.reset();
+    setService("");
   };
 
   return (
@@ -99,6 +142,7 @@ export function Contact() {
 
             {/* Form */}
             <form
+              ref={formRef}
               onSubmit={handleSubmit}
               className="bg-card p-6 md:p-8 rounded-lg shadow-lg"
             >
@@ -145,7 +189,7 @@ export function Contact() {
                 <Label htmlFor="service" className="text-accent">
                   Service Needed *
                 </Label>
-                <Select required>
+                <Select required value={service} onValueChange={setService}>
                   <SelectTrigger className="mt-1.5 border-border focus:border-primary bg-card">
                     <SelectValue placeholder="Select a service" />
                   </SelectTrigger>
@@ -176,9 +220,17 @@ export function Contact() {
               <Button
                 type="submit"
                 size="lg"
+                disabled={isSubmitting}
                 className="w-full bg-primary hover:bg-brand-red-dark text-primary-foreground text-lg font-semibold py-6"
               >
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </Button>
             </form>
           </div>
