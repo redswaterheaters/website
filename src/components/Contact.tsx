@@ -111,10 +111,12 @@ export function Contact() {
     };
 
     // Fire-and-forget: sync to Google Sheets (non-blocking)
+    // Use text/plain to avoid CORS preflight — Google Apps Script doesn't handle OPTIONS
     fetch("https://script.google.com/macros/s/AKfycbwSErcQYYHsbdLCwlMfGbu0iVAnPf3F-YDUAXj659lpyRfkxRgaTyzHPeGJzR-GpmZ0rg/exec", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "text/plain" },
       body: JSON.stringify(payload),
+      redirect: "follow",
     }).catch(() => {});
 
     // Fire-and-forget: send notification + acknowledgment emails (non-blocking)
