@@ -64,7 +64,7 @@ export function Hero() {
             size="lg"
             className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-accent px-8 py-6 text-lg font-semibold rounded-lg bg-transparent"
           >
-            Call (XXX) XXX-XXXX
+            555-555-5555
           </Button>
         </div>
       </div>
