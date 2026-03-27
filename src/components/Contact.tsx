@@ -102,17 +102,24 @@ export function Contact() {
       return;
     }
 
+    const payload = {
+      full_name: fullName,
+      phone_number: phoneNumber,
+      email_address: emailAddress,
+      service_needed: service,
+      message: message || null,
+    };
+
     // Fire-and-forget: sync to Google Sheets (non-blocking)
     fetch("https://script.google.com/macros/s/AKfycbwSErcQYYHsbdLCwlMfGbu0iVAnPf3F-YDUAXj659lpyRfkxRgaTyzHPeGJzR-GpmZ0rg/exec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        full_name: fullName,
-        phone_number: phoneNumber,
-        email_address: emailAddress,
-        service_needed: service,
-        message: message || null,
-      }),
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+
+    // Fire-and-forget: send notification + acknowledgment emails (non-blocking)
+    supabase.functions.invoke("send-contact-emails", {
+      body: payload,
     }).catch(() => {});
 
     toast({
