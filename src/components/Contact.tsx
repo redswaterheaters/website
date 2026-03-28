@@ -24,8 +24,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: "CALL US",
-    value: "555-555-5555",
-    href: "tel:+15555555555",
+    value: "777-777-7777",
+    href: "tel:+17777777777",
   },
   {
     icon: MapPin,
