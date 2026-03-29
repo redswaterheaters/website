@@ -31,7 +31,7 @@ export function Footer() {
 
         {/* Disclaimer */}
         <p className="text-primary-foreground/40 text-xs italic">
-          This is a demonstration website.
+          ​
         </p>
       </div>
     </footer>
