@@ -24,8 +24,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: "CALL US",
-    value: "777-777-7777",
-    href: "tel:+17777777777",
+    value: "222222222",
+    href: "tel:+12222222222",
   },
   {
     icon: MapPin,
@@ -187,7 +187,7 @@ export function Contact() {
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="777-777-7777"
+                    placeholder="222222222"
                     required
                     className="mt-1.5 border-border focus:border-primary"
                   />
