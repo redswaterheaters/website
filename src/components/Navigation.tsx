@@ -52,7 +52,7 @@ export function Navigation() {
             <img
               src={redsLogo}
               alt="Reds Water-heaters"
-              className="h-10 md:h-12 w-auto"
+              className="h-10 md:h-12 max-w-[10rem] object-contain"
             />
           </button>
 
