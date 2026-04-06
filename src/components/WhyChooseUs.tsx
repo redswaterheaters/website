@@ -65,7 +65,7 @@ export function WhyChooseUs() {
             THE REDS DIFFERENCE
           </span>
           <h2 className="text-3xl md:text-[40px] font-bold text-primary-foreground leading-tight">
-            Why Choose Reds Water-heaters
+            Why Choose Red's Water Heaters
           </h2>
         </div>
 
