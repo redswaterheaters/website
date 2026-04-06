@@ -36,7 +36,7 @@ export function Hero() {
           loading="eager"
           decoding="sync"
           fetchPriority="high"
-          className="w-72 md:w-96 mx-auto mb-8 animate-fade-up"
+          className="w-64 md:w-80 mx-auto mb-8 animate-fade-up"
         />
 
         {/* Main Headline */}
