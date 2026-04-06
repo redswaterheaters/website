@@ -13,7 +13,7 @@ export function Footer() {
           loading="eager"
           decoding="async"
           fetchPriority="high"
-          className="w-28 md:w-32 mx-auto mb-6"
+          className="w-40 md:w-48 mx-auto mb-6"
         />
 
         {/* County List */}
