@@ -72,7 +72,7 @@ export function Navigation() {
           {/* Contact Buttons */}
           <div className="flex items-center gap-2">
             <a
-              href="tel:+17777777777"
+              href="tel:+17407566296"
               className="flex items-center justify-center w-10 h-10 rounded-full bg-primary hover:bg-brand-red-dark transition-colors"
             >
               <Phone className="w-5 h-5 text-primary-foreground" />
