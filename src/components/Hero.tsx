@@ -41,7 +41,7 @@ export function Hero() {
 
         {/* Main Headline */}
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 animate-fade-up-delay-1 max-w-4xl mx-auto leading-tight">
-          EXPERT WATER HEATER SERVICE YOU CAN TRUST.
+          EXPERT WATER HEATER SERVICE YOU CAN TRUST
         </h1>
 
         {/* Subheadline */}
