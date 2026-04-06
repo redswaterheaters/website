@@ -24,8 +24,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: "CALL US",
-    value: "222222222",
-    href: "tel:+12222222222",
+    value: "740-756-6296",
+    href: "tel:+17407566296",
   },
   {
     icon: MapPin,
