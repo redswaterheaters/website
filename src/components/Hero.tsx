@@ -63,8 +63,9 @@ export function Hero() {
             variant="outline"
             size="lg"
             className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-accent px-8 py-6 text-lg font-semibold rounded-lg bg-transparent"
+            asChild
           >
-            740-756-6296
+            <a href="tel:+17407566296">740-756-6296</a>
           </Button>
         </div>
       </div>
