@@ -35,7 +35,7 @@ const contactInfo = [
   {
     icon: Clock,
     label: "SERVICE HOURS",
-    value: "Monday - Friday: 8:00 AM - 9:00 PM\nSaturday: By Appointment\nEmergency Service Available",
+    value: "Monday - Friday: 8:00 AM - 6:00 PM\nSaturday: By Appointment\nEmergency Service Available",
   },
 ];
 
